@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List From Vue</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Task List</h1>
+
+      <label for="task">Please Enter Your Task Here: </label>
+
+      <input v-model="newTask" id="task" />
+
+      <button v-on:click="addTask">Add Task</button>
+      <button v-on:click="clearTask">Clear Task</button>
+      <ul>
+        <!-- Similar to JS For in loops -->
+        <li v-for="task in taskList">{{task}}</li>
+      </ul>
+
+      <script>
+        let app = Vue.createApp({
+          data() {
+            return {
+              newTask: '',
+              taskList: [],
+            };
+          },
+          methods: {
+            addTask() {
+              // // Users new task
+              // let newUserTask = this.newTask;
+
+              // // copy of the array
+              // let copyOfArray = this.taskList;
+
+              // // new copy with pushing new task into array list
+              // let newCopy = copyOfArray.push(newUserTask);
+
+              // // clear new task field
+              // this.newTask = '';
+
+              // // Reflect the copy to render
+              // return newCopy;
+
+              // Easier way
+              this.taskList.push(this.newTask);
+
+              // Clear
+              this.newTask = '';
+            },
+            clearTask() {
+              this.taskList = '';
+            },
+          },
+        });
+        app.mount('#app');
+      </script>
+    </div>
+  </body>
+</html>
